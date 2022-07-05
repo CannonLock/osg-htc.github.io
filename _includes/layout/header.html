@@ -32,6 +32,15 @@
                             {% endfor %}
                         </div>
                     </li>
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="organization-dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Organizations
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="organization-dropdown">
+                            <a class="dropdown-item" href="{{ '/campus-cyberinfrastructure.html' | relative_url }}">Campuses</a>
+                            <a class="dropdown-item" href="{{ '/organization/collaborations/index.html' | relative_url }}">Collaborations</a>
+                        </div>
+                    </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ '/campus-cyberinfrastructure.html' | relative_url }}">Campuses</a>
                     </li>

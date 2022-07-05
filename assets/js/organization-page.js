@@ -268,7 +268,7 @@ class Collaborations {
 
     fetchCollaborations = async () => {
         try {
-            let collaborationsResponse = await fetch("https://raw.githubusercontent.com/ppaschos/Collab-dashboard-repo/main/data/collaborations.json")
+            let collaborationsResponse = await fetch("/assets/data/collaborations.json")
             return await collaborationsResponse.json()
         } catch(error) {
             console.error("Could not fetch compute sites JSON for reason: " + error)
@@ -309,6 +309,8 @@ class CollaborationPage {
         this.map = new Map()
 
         this.collaborations = new Collaborations()
+
+        console.log(this.collaborations)
 
         this.initializeViewSelect()
         this.initializeASYNC()
@@ -367,5 +369,7 @@ class CollaborationPage {
         return this.viewSelectNode.value
     }
 }
+
+const page = new CollaborationPage()
 
 export { Collaborations, icons }
