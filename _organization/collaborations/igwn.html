@@ -18,16 +18,16 @@ js_extension:
             <h1 class="display fs-0 pe-3 border-3 border-end">{{page.title}}</h1>
         </div>
         <div class="col-auto d-flex">
-            <img height="60" class="w-auto my-auto" alt="Kagra Logo" src="/assets/images/logos/kagra_logo.png">
+            <img height="60" class="w-auto my-auto" alt="Kagra Logo" src="{{ '/assets/images/logos/kagra_logo.png' | relative_url }}">
         </div>
         <div class="col-auto d-flex">
-            <img height="60" class="w-auto my-auto" alt="LIGO Logo" src="/assets/images/logos/ligo_logo.png">
+            <img height="60" class="w-auto my-auto" alt="LIGO Logo" src="{{ '/assets/images/logos/ligo_logo.png' | relative_url }}">
         </div>
         <div class="col-auto d-flex">
-            <img height="60" class="w-auto my-auto" alt="LSC Logo" src="/assets/images/logos/lsc_logo.png">
+            <img height="60" class="w-auto my-auto" alt="LSC Logo" src="{{ '/assets/images/logos/lsc_logo.png' | relative_url }}">
         </div>
         <div class="col-auto d-flex">
-            <img height="60" class="w-auto my-auto" alt="Virgo Logo" src="/assets/images/logos/egovirgo_logo.jpeg">
+            <img height="60" class="w-auto my-auto" alt="Virgo Logo" src="{{ '/assets/images/logos/egovirgo_logo.jpeg' | relative_url }}">
         </div>
     </div>
     <div class="row my-5 justify-content-center">
@@ -78,6 +78,9 @@ js_extension:
         </div>
     </div>
 </div>
-<div class="iframe-container">
-    <iframe height="100%" width="100%" allow="fullscreen" src="https://osg-htc.org/organization/iframe.html"></iframe>
+<div class="container-xxl">
+    <div class="iframe-container card">
+        <iframe height="100%" width="100%" allow="fullscreen" src="https://osg-htc.org/organization/iframe.html"></iframe>
+    </div>
 </div>
+

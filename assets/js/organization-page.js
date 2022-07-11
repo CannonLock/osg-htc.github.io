@@ -310,8 +310,6 @@ class CollaborationPage {
 
         this.collaborations = new Collaborations()
 
-        console.log(this.collaborations)
-
         this.initializeViewSelect()
         this.initializeASYNC()
     }
@@ -370,6 +368,5 @@ class CollaborationPage {
     }
 }
 
-const page = new CollaborationPage()
 
 export { Collaborations, icons }
