@@ -110,7 +110,7 @@ th, td {
 @include media-breakpoint-down(md) {
   #ospool-statistics-display {
     position: relative;
-    height: 420px;
+    height: 460px;
     overflow-x: hidden;
 
     .job-text {
@@ -127,7 +127,7 @@ th, td {
 @include media-breakpoint-up(md) {
   #ospool-statistics-display {
     position: relative;
-    height: 300px;
+    height: 350px;
     overflow-x: hidden;
 
     .job-text {
