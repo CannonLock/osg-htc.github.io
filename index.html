@@ -3,309 +3,236 @@ layout: default
 css_extension:
   - href: "/assets/css/homepage.css"
 ---
-{% assign date = "now" | date: "%s" %}
-{% assign enddate = "2024-08-15" | date: "%s" %}
-{% if date < enddate %}
-<div class="bg-primary py-2">
-        <div class="container-xxl">
-            <span class="text-dark">CHTC is hiring! View the new Research Cyberinfrastructure Specialist position on the jobs page and apply by August 15th.</a>
-            <a class="btn btn-light px-1 ms-2 py-0" href="https://chtc.cs.wisc.edu/jobs.html#full-time-positions">View Job Posting</a>
-        </div>
-    </div>
-{% endif %}
-{% include /get/hero_story.liquid %}
-<div id="hero-image" class="vh-75 vh-md-50">
-    <div class="container-xxl">
-        <div class="row {% if hero_story.additional_image %}justify-content-center{% endif %}">
-            {% if hero_story.additional_image %}
-                <div class="col-12 col-sm-10 col-md-6 col-xxl-7 col- d-flex order-md-2">
-                    <img class="img-fluid pt-3 pt-lg-0" src="{{ hero_story.additional_image.src | relative_url }}" alt="{{ hero_story.additional_image.alt }}" />
-                </div>
-            {% endif %}
-            <div class="col-12 col-md-6 col-xxl-5 order-lg-1">
-                <div class="p-3 my-3 d-flex flex-column shadow" id="hero-content-container">
-                    <h3>{{ hero_story.title }}</h3>
-                    <hr>
-                    <div style="min-height: 150px">
-                        {{ hero_story.excerpt | markdownify }}
-                    </div>
-                    {% unless hero_story.buttons %}
-                        <a class="mt-auto me-auto btn btn-primary" href="{{ hero_story.url | relative_url }}">Read About Spotlight User</a>
-                    {% else %}
-                        {% if hero_story.buttons.length == 1 %}
-                            <a class="mt-auto me-auto btn btn-primary" href="{{ buttons[0].href | relative_url }}">{{ buttons[0].text }}</a>
-                        {% else %}
-                            <div class="row mt-auto">
-                                {% for button in hero_story.buttons %}
-                                    <div class="col-auto">
-                                        <a class="btn btn-primary" href="{{ button.href | default: hero_story.url | relative_url }}">{{ button.text }}</a>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                    {% endunless %}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container-xxl mt-4">
-  <div class="row mb-4">
-    <div class="col-md-8">
-      <h1 class="mini-bar">The OSG Consortium</h1>
-      <p class="fst-italic">
-        Established in 2005, the OSG Consortium operates a fabric of distributed High
-        Throughput Computing (dHTC) services in support of the National Science & Engineering
-        community. The research collaborations, campuses, national laboratories, and software
-        providers that form the consortium are unified in their commitment to advance
-        open science via these services.
-      </p>
-      {% assign now = "now" | date: "%s" %}
-      {% if now < "1729036799" %}
+import { Container, Box, Typography, Button, Card, CardContent, Grid, Link } from '@mui/material';
+import Image from 'next/image';
 
-      <div class="p-3 my-4 bg-white-offset fs-5 rounded shadow">
-          <h3 class="mt-0 text-center pb-3">We are here to help with your <a href="https://new.nsf.gov/funding/opportunities/campus-cyberinfrastructure-cc/nsf24-530/solicitation">CC* Proposal (NSF 24-530)!</a></h3>
-          <p class="text-center">
-              Campuses with awards from the
-              <a href="https://www.nsf.gov/funding/pgm_summ.jsp?pims_id=504748">NSF Campus Cyberinfrastructure (CC*)</a>
-              Program play an important role in supporting Open Science. To date, 37 CC* campuses contribute to the processing and storage capacity of the
-              <a href="{{ '/services/open_science_pool.html' | relative_url }}">Open Science Pool (OSPool)</a> that is
-              harnessed weekly by more than 3M jobs.
-          </p>
-          <p class="mb-0 d-flex justify-content-center pt-3">
-              <a class="btn btn-dark text-decoration-underline fs-5" href="mailto:cc-star-proposals@osg-htc.org">Email Us</a>
-              <a class="btn btn-dark text-decoration-underline ms-1 fs-5" href="/campus-cyberinfrastructure#let-the-path-team-help-with-your-proposal">How We Can Help</a>
-          </p>
-      </div>
-      {% endif %}
+export default function Home() {
+  return (
+    <Container maxWidth="xl">
+      <Box id="hero-image" sx={{ height: { xs: '75vh', md: '50vh' }, display: 'flex', alignItems: 'center' }}>
+        <Container maxWidth="xl">
+          <Grid container justifyContent="center">
+            <Grid item xs={12} md={6} sx={{ order: { md: 2 } }}>
+              <Image src="/path/to/image.jpg" alt="Hero Image" layout="responsive" width={500} height={300} />
+            </Grid>
+            <Grid item xs={12} md={6} sx={{ order: { md: 1 } }}>
+              <Box sx={{ p: 3, my: 3, display: 'flex', flexDirection: 'column', boxShadow: 3 }}>
+                <Typography variant="h3">Hero Title</Typography>
+                <hr />
+                <Box sx={{ minHeight: 150 }}>
+                  <Typography variant="body1">Hero excerpt content goes here.</Typography>
+                </Box>
+                <Box sx={{ mt: 'auto', display: 'flex', flexDirection: 'column' }}>
+                  <Button variant="contained" color="primary" href="/path/to/button1">Button 1</Button>
+                  <Button variant="contained" color="primary" href="/path/to/button2">Button 2</Button>
+                </Box>
+              </Box>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
 
-      <h5 id="open-science-pool-ospool"><a href="{{ '/services/open_science_pool.html' | relative_url }}">Open Science Pool</a></h5>
-      <p>
-        Any researcher performing Open Science in the US can become an <a href="{{ '/services/open_science_pool.html' | relative_url }}">OSPool</a> user. The OSPool
-        provides its users with fair-share access (no allocation needed!) to processing and
-        storage capacity contributed by university campuses, government-supported
-        supercomputing institutions and research collaborations. Using state-of-the-art
-        distributed computing technologies the OSPool is designed to support High
-        Throughput workloads that consist of large ensembles of independent computations.
-      </p>
-      <h5 id="open-science-data-federation"><a href="{{ '/services/osdf.html' | relative_url }}">Open Science Data Federation (OSDF)</a></h5>
-      <p>
-        The <a href="{{ '/services/osdf.html' | relative_url }}">Open Science Data Federation (OSDF)</a> enables users
-        and institutions to share data files and storage capacity, making them both accessible in dHTC environments
-        such as the OSPool.
-      </p>
-      <ul>
-        <li>Provides campuses and researchers with the ability to manage their data files, input and output, in support of running their dHTC workloads.</li>
-        <li>Improves file access performance, resource consumption and reliability.</li>
-        <li><a href="https://portal.osg-htc.org/documentation/htc_workloads/managing_data/overview/">OSG-Operated Access Points</a> provide researchers with a default of 500GB of storage space on the OSDF.</li>
-      </ul>
-        
-     <h5 id="Throughput Computing Week 2025">Throughput Computing 2025</h5>
-      <div>
-        <p>
-            <b>
-              You are invited to Throughput Computing Week 2025 (HTC25) in beautiful Madison, Wisconsin, the week of June 2-6, 2025. Registration will open in January 2025.
-            </b>
-        </p>
-        <p>
-            In July 2024, CHTC and the OSG Consortium hosted its second annual Throughput Computing Week in Madison, Wisconsin joined in person and remotely by 388 participants. 2024 themes included dedicated sessions on campus cyberinfrastructure, talks on AI and machine learning enabled by high throughput computing, and tutorials and presentations on the new Pelican Platform project.
-        </p>
-        <p>
-            <a href="/spotlights/htc-24-event.html">Read about some of the highlights from Throughput Computing Week 2024</a>
-            </p>
-        <p>
-            <a href="https://agenda.hep.wisc.edu/event/2175/timetable/#all.detailed">View HTC24 Contributions, Recordings and Slides</a>
-        </p>
-        <p>
-            If you are campus, researcher, scientific collaboration or government representative interested in throughput computing, please consider joining
-            the annual Throughput Computing Week.
-        </p>
-      </div>
-     
-    </div>
-    <div class="col-sm-12 col-md-4 mx-md-auto">
-      {% include /get/future_events.html %}
-      {% if future_events.size != 0 %}
-      <div class="card my-2">
-        <div class="card-body mb-auto">
-          <h3 class="m-0"><a href="/events.html">Events</a></h3>
-          <hr class="my-2">
-          {% for data in future_events limit: 2 %}
-            {% include /cards/img-title-date.html class="mt-2" src=data.header_image %}
-          {% endfor %}
-        </div>
-      </div>
-      {% endif %}
-      <div class="card">
-        <div class="card-body mb-auto">
-          <h3 class="m-0"><a href="/news.html">News</a></h3>
-          <hr class="my-2">
-          {% include /get/news.liquid %}
-          {% for data in news limit: 3 %}
-            {% include /cards/title-date.html class="my-2" %}
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="bg-light py-4">
-  <div class="container-xxl">
-    <h2 id="osg-by-maps" class="mini-bar my-3">OSG By Maps</h2>
-      <div class="row gx-2">
-        {% for map in site.data.maps %}
-          <div class="col-12 col-sm-6 col-lg-3 {% cycle '', 'd-none d-sm-block', 'd-none d-lg-block', 'd-none d-lg-block' %}">
-            <a href="https://map.osg-htc.org{{ map.params }}">
-              <div class="rounded bg-white hover-shadow border-dark border">
-                <h4 class="m-0 p-2">{{ map.title }}</h4>
-                <picture>
-                  <source srcset="{{ map.image}}.webp">
-                  <img class="img-fluid rounded-bottom" src="{{ map.image }}.png">
-                </picture>
-              </div>
-            </a>
-          </div>
-        {% endfor %}
-      </div>
-  </div>
-</div>
-<div class="bg-dark py-4 mb-4">
-  <div class="container-xxl">
-    <h2 class="mini-bar my-3 text-light">User Spotlights</h2>
-    <div class="border border-light rounded-3 p-2">
-      <div class="row justify-content-center gx-2">
-        {% include get/spotlights.liquid %}
-        {% for article in spotlights limit:3 %}
-        <div class="col-12 col-md-6 col-xl-4 {% cycle 'order-1 order-md-2', 'd-none d-md-block order-3', 'd-none d-xl-block order-3' %}">
-          {% include /cards/spotlight-card.html height='150' no_date="true" %}
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container-xxl">
-  <div class="row border-4 border-primary ">
-    <div class="col-12 col-md-6 col-lg-4 mb-4">
-      <div class="card h-100">
-        <div class="card-body">
-          <h3>What We Do</h3>
-          <hr>
-          <p>The OSG facilitates access to distributed high throughput computing for research in the US.
-            The resources accessible through the OSG are contributed by the community, organized by the OSG, and governed by the OSG consortium.
-            In the last 12 months, we have provided more than 1.2 billion CPU hours to researchers across a wide variety of projects.
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-md-6 col-lg-4 mb-4">
-      <div class="card h-100">
-        <div class="card-body">
-          <h3>Submit Locally, Run Globally</h3>
-          <hr>
-          <p>Researchers can run jobs on OSG from their home institution or an <a href="https://portal.osg-htc.org/">OSG-Operated Access Point</a> (available for US-based research and scholarship).</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-md-6 col-lg-4 mb-4">
-      <div class="card h-100">
-        <div class="card-body">
-          <h3>Sharing Is Key</h3>
-          <hr>
-          <p><em>Sharing is a core principle of the OSG.</em>  Over 100 million CPU hours delivered on the OSG in the
-            past year were opportunistic, contributed by university campuses, government-supported supercomputing facilities and research collaborations.
-            Sharing allows individual researchers to access larger computing resources and large organizations to keep their utilization high.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-md-6 col-lg-4 mb-4">
-      <div class="card h-100">
-        <div class="card-body">
-          <h3>Resource Providers</h3>
-          <hr>
-          <p>The OSG consists of computing and storage elements at over 100 individual sites spanning the United States.
-            These sites, primarily at universities and national labs, range in size from a few hundred to tens of thousands of CPU cores.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-md-6 col-lg-4 mb-4">
-      <div class="card h-100">
-        <div class="card-body">
-          <h3>The OSG Software Stack</h3>
-          <hr>
-          <p>The OSG provides an integrated software stack to enable high throughput computing; <a href="https://support.opensciencegrid.org/support/home">visit our technical documents website for information</a>.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-md-6 col-lg-4 mb-4">
-      <div class="card h-100">
-        <div class="card-body">
-          <h3>Coordinating CI Services</h3>
-          <hr>
-          <p>
-            NSF’s
-            <a href="https://www.nsf.gov/cise/oac/vision/blueprint-2019/">Blueprint
-              for National Cyberinfrastructure Coordination Services</a>
-            lays out the need for coordination services to bring together the distributed elements of a national CI ecosystem.
-            It highlights OSG as providing distributed high throughput computing services to the U.S. research community.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="bg-light my-4">
-  <div class="container-xxl">
-    <div class="row justify-content-center">
-      <div class="col-md-12 col-lg-10 col-xl-8">
-        <h3>Find Us!</h3>
-        <p>Are you a resource provider wanting to join our collaboration? Contact us: <a href="mailto:support@osg-htc.org">support@osg-htc.org</a>.</p>
-        <p>Are you a user wanting more computing resources? Check with your 'local' computing providers, or consider using an <a href="https://portal.osg-htc.org">OSG-Operated Access Point</a> which has access to the OSPool (available to US-based academic/govt/non-profit research projects).</p>
-        <p>For any other inquiries, reach us at: <a href="mailto:support@osg-htc.org">support@osg-htc.org</a>.</p>
-        <p>To see the breadth of the OSG impact, <a href="https://gracc.opensciencegrid.org">explore our accounting portal</a>.</p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container-xxl">
-  <div class="card">
-    <div class="card-body">
-      <h3>Support</h3>
-      <p class="text-muted">
-        The activities of the OSG Consortium are supported by multiple projects and in-kind contributions from members.
-        Significant funding is provided through:
-      </p>
-      <hr>
-      <div class="row justify-content-evenly">
-        <div class="col-md-10 col-lg-8">
-          {% include image-title-desc-card.html
-          img_src="/assets/images/logos/Logo_Round_Med.png"
-          img_alt="PATh Logo"
-          title="PATh"
-          description="
-          The Partnership to Advance Throughput Computing (PATh) is an NSF-funded (#2030508) project to address the
-          needs of the rapidly growing community embracing Distributed High Throughput Computing (dHTC) technologies
-          and services to advance their research.
-          "
-          url="https://path-cc.io/"
-          %}
-        </div>
-        <div class="col-md-10 col-lg-8">
-          {% include image-title-desc-card.html
-          img_src="/assets/images/logos/IRIS_HEP.png"
-          img_alt="Iris-Hep Logo"
-          title="IRIS-HEP"
-          description="
-          The Institute for Research and Innovation in Software for High Energy Physics (IRIS-HEP) is an
-          NSF-funded (#1836650) software institute established to meet the software and computing challenges
-          of the HL-LHC, through R&D for the software for acquiring, managing, processing and analyzing HL-LHC data.
-          "
-          url="https://iris-hep.org/"
-          class="flex-row-reverse"
-          %}
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+      <Container maxWidth="xl" sx={{ mt: 4 }}>
+        <Grid container spacing={4}>
+          <Grid item md={8}>
+            <Typography variant="h1">The OSG Consortium</Typography>
+            <Typography variant="body1" sx={{ fontStyle: 'italic' }}>
+              Established in 2005, the OSG Consortium operates a fabric of distributed High Throughput Computing (dHTC) services in support of the National Science & Engineering community...
+            </Typography>
+            <Box sx={{ p: 3, my: 4, bgcolor: 'white', boxShadow: 3 }}>
+              <Typography variant="h3" align="center">We are here to help with your CC* Proposal (NSF 24-530)!</Typography>
+              <Typography align="center">
+                Campuses with awards from the NSF Campus Cyberinfrastructure (CC*) Program play an important role in supporting Open Science...
+              </Typography>
+              <Box sx={{ display: 'flex', justifyContent: 'center', pt: 3 }}>
+                <Button variant="contained" color="primary" href="mailto:cc-star-proposals@osg-htc.org">Email Us</Button>
+                <Button variant="contained" color="primary" href="/campus-cyberinfrastructure#let-the-path-team-help-with-your-proposal">How We Can Help</Button>
+              </Box>
+            </Box>
+            <Typography variant="h5"><Link href="/services/open_science_pool.html">Open Science Pool</Link></Typography>
+            <Typography variant="body1">
+              Any researcher performing Open Science in the US can become an OSPool user...
+            </Typography>
+            <Typography variant="h5"><Link href="/services/osdf.html">Open Science Data Federation (OSDF)</Link></Typography>
+            <Typography variant="body1">
+              The Open Science Data Federation (OSDF) enables users and institutions to share data files and storage capacity...
+            </Typography>
+            <ul>
+              <li>Provides campuses and researchers with the ability to manage their data files...</li>
+              <li>Improves file access performance, resource consumption and reliability...</li>
+              <li><Link href="https://portal.osg-htc.org/documentation/htc_workloads/managing_data/overview/">OSG-Operated Access Points</Link> provide researchers with a default of 500GB of storage space on the OSDF.</li>
+            </ul>
+            <Typography variant="h5">Throughput Computing Week 2025</Typography>
+            <Typography variant="body1">
+              You are invited to Throughput Computing Week 2025 (HTC25) in beautiful Madison, Wisconsin, the week of June 2-6, 2025...
+            </Typography>
+          </Grid>
+          <Grid item md={4}>
+            <Card>
+              <CardContent>
+                <Typography variant="h3"><Link href="/events.html">Events</Link></Typography>
+                <hr />
+                {/* Include future events here */}
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent>
+                <Typography variant="h3"><Link href="/news.html">News</Link></Typography>
+                <hr />
+                {/* Include news here */}
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+      </Container>
+
+      <Box sx={{ bgcolor: 'lightgray', py: 4 }}>
+        <Container maxWidth="xl">
+          <Typography variant="h2">OSG By Maps</Typography>
+          <Grid container spacing={2}>
+            {/* Include maps here */}
+          </Grid>
+        </Container>
+      </Box>
+
+      <Box sx={{ bgcolor: 'darkgray', py: 4, mb: 4 }}>
+        <Container maxWidth="xl">
+          <Typography variant="h2" color="white">User Spotlights</Typography>
+          <Box sx={{ border: 1, borderColor: 'lightgray', borderRadius: 3, p: 2 }}>
+            <Grid container justifyContent="center" spacing={2}>
+              {/* Include spotlights here */}
+            </Grid>
+          </Box>
+        </Container>
+      </Box>
+
+      <Container maxWidth="xl">
+        <Grid container spacing={4}>
+          <Grid item md={6} lg={4}>
+            <Card>
+              <CardContent>
+                <Typography variant="h3">What We Do</Typography>
+                <hr />
+                <Typography variant="body1">
+                  The OSG facilitates access to distributed high throughput computing for research in the US...
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item md={6} lg={4}>
+            <Card>
+              <CardContent>
+                <Typography variant="h3">Submit Locally, Run Globally</Typography>
+                <hr />
+                <Typography variant="body1">
+                  Researchers can run jobs on OSG from their home institution or an OSG-Operated Access Point...
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item md={6} lg={4}>
+            <Card>
+              <CardContent>
+                <Typography variant="h3">Sharing Is Key</Typography>
+                <hr />
+                <Typography variant="body1">
+                  Sharing is a core principle of the OSG...
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item md={6} lg={4}>
+            <Card>
+              <CardContent>
+                <Typography variant="h3">Resource Providers</Typography>
+                <hr />
+                <Typography variant="body1">
+                  The OSG consists of computing and storage elements at over 100 individual sites spanning the United States...
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item md={6} lg={4}>
+            <Card>
+              <CardContent>
+                <Typography variant="h3">The OSG Software Stack</Typography>
+                <hr />
+                <Typography variant="body1">
+                  The OSG provides an integrated software stack to enable high throughput computing...
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item md={6} lg={4}>
+            <Card>
+              <CardContent>
+                <Typography variant="h3">Coordinating CI Services</Typography>
+                <hr />
+                <Typography variant="body1">
+                  NSF’s Blueprint for National Cyberinfrastructure Coordination Services lays out the need for coordination services...
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+      </Container>
+
+      <Box sx={{ bgcolor: 'lightgray', my: 4 }}>
+        <Container maxWidth="xl">
+          <Typography variant="h3">Find Us!</Typography>
+          <Typography variant="body1">
+            Are you a resource provider wanting to join our collaboration? Contact us: <Link href="mailto:support@osg-htc.org">support@osg-htc.org</Link>.
+          </Typography>
+          <Typography variant="body1">
+            Are you a user wanting more computing resources? Check with your 'local' computing providers, or consider using an OSG-Operated Access Point...
+          </Typography>
+          <Typography variant="body1">
+            For any other inquiries, reach us at: <Link href="mailto:support@osg-htc.org">support@osg-htc.org</Link>.
+          </Typography>
+          <Typography variant="body1">
+            To see the breadth of the OSG impact, <Link href="https://gracc.opensciencegrid.org">explore our accounting portal</Link>.
+          </Typography>
+        </Container>
+      </Box>
+
+      <Container maxWidth="xl">
+        <Card>
+          <CardContent>
+            <Typography variant="h3">Support</Typography>
+            <Typography variant="body1" color="textSecondary">
+              The activities of the OSG Consortium are supported by multiple projects and in-kind contributions from members...
+            </Typography>
+            <hr />
+            <Grid container justifyContent="center" spacing={4}>
+              <Grid item md={10} lg={8}>
+                <Card>
+                  <CardContent>
+                    <Image src="/assets/images/logos/Logo_Round_Med.png" alt="PATh Logo" width={100} height={100} />
+                    <Typography variant="h4">PATh</Typography>
+                    <Typography variant="body1">
+                      The Partnership to Advance Throughput Computing (PATh) is an NSF-funded project to address the needs of the rapidly growing community...
+                    </Typography>
+                    <Link href="https://path-cc.io/">Learn more</Link>
+                  </CardContent>
+                </Card>
+              </Grid>
+              <Grid item md={10} lg={8}>
+                <Card>
+                  <CardContent>
+                    <Image src="/assets/images/logos/IRIS_HEP.png" alt="Iris-Hep Logo" width={100} height={100} />
+                    <Typography variant="h4">IRIS-HEP</Typography>
+                    <Typography variant="body1">
+                      The Institute for Research and Innovation in Software for High Energy Physics (IRIS-HEP) is an NSF-funded software institute...
+                    </Typography>
+                    <Link href="https://iris-hep.org/">Learn more</Link>
+                  </CardContent>
+                </Card>
+              </Grid>
+            </Grid>
+          </CardContent>
+        </Card>
+      </Container>
+    </Container>
+  );
+}
 
